@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome Navi Neo</title>
+
+    <link type="text/css" rel="stylesheet" href="./stylesheets/index.css">
+    <script src="https://cdn.jsdelivr.net/npm/focus-visible@5.2.0/dist/focus-visible.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"
+      integrity="sha384-6woDBwQr+eqsszpfCWmyJ2UTm+OSym/GuB2NAD8H3d+6xuEZzOMJ/6GEPDTPPCmi"
+      crossorigin="anonymous"
+      defer></script>
+    <script src="./data/places.js" defer></script>
+    <script src="./javascripts/config.js" defer></script>
+    <script src="./javascripts/member.js" defer></script>
+    <script src="./javascripts/routeSearcher.js" defer></script>
+
+  </head>
+  <body>
+    <h1>Welcome Navi Neo（メンバー）</h1>
+    <p><a href="index.html">一人の場合はこちら</a></p>
+    <h2>メンバーの駅を指定してください！（最大4つまで）</h2>
+    <form id="station-form">
+      <input type="text" id="station-name-1" name="station-name-1">駅<br>
+      <details ><summary>駅を追加</summary><input type="text" id="station-name-2" name="station-name-2">駅<br></details>
+      <details><summary>駅を追加</summary><input type="text" id="station-name-3" name="station-name-3">駅<br></details>
+      <details><summary>駅を追加</summary><input type="text" id="station-name-4" name="station-name-4">駅<br></details>
+      <!--
+      <h3><p>大学付近の駅：<div id="near-stations-list"></div></p></h3>
+      <p>所要時間<input type="text" id="duration" name="duration" autocomplete="off">分</p>
+      <p>到着時刻<input type="text" id="arrival-time" name="arrival-time" autocomplete="off">     4桁(例:1330)で入力してください</p>
+      -->
+    <!--
+    <label for="大学から">
+      <input type="checkbox" id="directed" value="1">
+      大学から
+    </label>
+    -->
+      <br>
+      <div class="">
+        <input type="checkbox" name="checkbox" id="is-visited"  value="1"/>
+        <label for="is-visited">行ったことのない店を優先表示</label>
+      </div>
+
+      <p>
+        苦手な食べ物を選択してください。
+        <div class = "" id="dislike-food">
+        </div>
+      </p>
+      <input value='検索' type="submit" onclick="showCalcTime(); return false;"  class="button">
+    </form>
+    <br>
+    <select id='budget' multiple size="4">
+      <optgroup label="予算">
+        <option value="3000">〜3000円</option>
+        <option value="3001">3001円〜</option>
+        <option value="0" selected>気にしない</option>
+      </optgroup>
+    </select>
+    <select id='kind' multiple size="6">
+      <optgroup label="ジャンル">
+        <option value="定食">定食</option>
+        <option value="イタリアン">イタリアン</option>
+        <option value="スペイン料理">スペイン料理</option>
+        <option value="インド料理">インド料理</option>
+        <option value="0" selected>指定しない</option>
+      </optgroup>
+    </select>
+    <br>
+    <select id='partition'  multiple size="3">
+      <optgroup label="パーティション">
+        <option value="あり" >あり</option>
+        <option value="なし" selected>気にしない</option>
+      </optgroup>
+    </select>
+    <select id='seat-distance'  multiple size="3">
+      <optgroup label="座席間隔">
+        <option value="1">60 cm以上</option>
+        <option value="0" selected>気にしない</option>
+      </optgroup>
+    </select>
+    <select id='time-limit'  multiple size="3">
+      <optgroup label="時間制限">
+        <option value="1" >あり</option>
+        <option value="0" selected>気にしない</option>
+      </optgroup>
+    </select>
+    <select id='limit-num-people'  multiple size="3">
+      <optgroup label="人数制限">
+        <option value="1" >あり</option>
+        <option value="0" selected>気にしない</option>
+      </optgroup>
+    </select>
+    <br>
+    <select id='sort-algorithm'  multiple size="4">
+      <optgroup label="表示の順番">
+        <option value="1" >感染対策順</option>
+        <option value="0" selected>かかる時間順</option>
+      </optgroup>
+    </select>
+    <form id="visit-form">
+      <input value='来店歴を保存' type="submit" onclick="saveVisitData(); return false;" class="button">
+    </form>
+    <div id="result-area">
+    </div>
+  </body>
+</html>
